@@ -1,0 +1,8 @@
+input_config_id_conversion,input_config_id_ingestion,output_config_id,output_write_to_bq_dataset_name,output_write_to_parquet_bucket_name,interface
+f1435656-6dd1-4413-b84c-ddb6c57cfaa5,,,,,
+3fc8e5b7-be0c-489e-a62c-e3dcf601673b
+cba8204c-0385-4c82-a748-f85b6f7adb56
+45685889-8139-2102-8395-156890482256,45685889-8139-2102-8395-156890482256,45685889-8139-2102-8395-156890482256,vfit_dh_lake_ckm_rawprepared_s,vfit-dh-ckm-rawprepared,DM_CAMPAIGN_BDP_D_D
+008b1d8e-697d-47dc-856e-5798ec6c9b50,008b1d8e-697d-47dc-856e-5798ec6c9b50,008b1d8e-697d-47dc-856e-5798ec6c9b50,vfit_dh_lake_ckm_rawprepared_s,vfpt-dh-ckm-rawprepared,pi_inp
+17aff22b-4a86-4abb-99f1-9c3dbbdb446c
+454bd408-99e2-4566-b1ec-d618a440b7a7

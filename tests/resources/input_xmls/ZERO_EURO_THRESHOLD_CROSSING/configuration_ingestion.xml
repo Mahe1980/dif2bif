@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="localRootPath" value="/var/SP/data/staging"/>
+            <property name="hdfsRootPath" value="/data/raw"/>
+        </properties>
+    </generalConfiguration>
+    <dataFlows>
+		<dataFlow configurationId="3fc8e5b7-be0c-489e-a62c-e3dcf601673b" name="ZERO_EURO_THRESHOLD_CROSSING" description="ZERO_EURO_THRESHOLD_CROSSING Ingestion">
+            <properties>
+                <property name="country" value="it"></property>
+                <property name="datasource" value="meg"></property>
+                <property name="interface" value="ZERO_EURO_THRESHOLD_CROSSING"></property>
+                <property name="version" value="1.0"></property>
+            </properties>
+            <preIngestionTasks>
+                <task name="FilenameMapperTask" enabled="true" stopOnFailure="true">
+                    <integrityChecker name="CRC_CHECK">
+                        <parameters>
+                            <parameter name="fileExtension" value=".gz"></parameter>
+                            <parameter name="crcExtension" value=".gz.ok"></parameter>
+                            <parameter name="fieldSeparator" value="|"></parameter>
+                        </parameters>
+                    </integrityChecker>
+                    <parameters>
+                        <parameter name="fileRegex" value="(IT_BAL_MEG_H_ZERO_THRESH_CROSS)_(\d{4})(\d{2})(\d{2})(\d{2})(.*).csv.gz"></parameter>
+                        <parameter name="2" value="year"></parameter>
+                        <parameter name="3" value="month"></parameter>
+                        <parameter name="4" value="day"></parameter>
+                        <parameter name="5" value="hour"></parameter>
+                    </parameters>
+                </task>
+            </preIngestionTasks>
+            <from>
+                <path>${localRootPath}/vf_${country}/${datasource}/staging</path>
+            </from>
+            <to>
+                <path>${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}/csv</path>
+                <partitions>
+                    <partition name="year" position="year" source="property"></partition>
+                    <partition name="month" position="month" source="property"></partition>
+                    <partition name="day" position="day" source="property"></partition>
+                    <partition name="hour" position="hour" source="property"></partition>
+                </partitions>
+            </to>
+            <archive path="${localRootPath}/vf_${country}/${datasource}/inprogress/archive/${interface}"></archive>
+            <errors path="${localRootPath}/vf_${country}/${datasource}/inprogress/error/${interface}"></errors>
+        </dataFlow>
+	</dataFlows>
+</configuration>

@@ -1,0 +1,908 @@
+[
+    {
+        "name": "SIM_ID_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "sim id profil"
+    },
+    {
+        "name": "MSISDN_NUM_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "msisdn num profil"
+    },
+    {
+        "name": "TIPO_CARTA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "tipo carta"
+    },
+    {
+        "name": "PIANO_TIPO_ID",
+        "type": "string",
+        "mode": "nullable",
+        "description": "piano tipo id"
+    },
+    {
+        "name": "DATA_ATTIVAZIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data attivazione"
+    },
+    {
+        "name": "MODO_ATTIVAZIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "modo attivazione"
+    },
+    {
+        "name": "DATA_ANAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data anag"
+    },
+    {
+        "name": "DATA_DISATTIVAZIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data disattivazione"
+    },
+    {
+        "name": "REASON",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "reason"
+    },
+    {
+        "name": "TIPO_REASON",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "tipo reason"
+    },
+    {
+        "name": "INIZIATIVA_REASON",
+        "type": "string",
+        "mode": "nullable",
+        "description": "iniziativa reason"
+    },
+    {
+        "name": "COMMITTENTE_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "committente id"
+    },
+    {
+        "name": "CANALE_ID",
+        "type": "string",
+        "mode": "nullable",
+        "description": "canale id"
+    },
+    {
+        "name": "DEALER_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "dealer id"
+    },
+    {
+        "name": "PRODUCT_CODE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "product code"
+    },
+    {
+        "name": "ZONA_RESIDENZA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "zona residenza"
+    },
+    {
+        "name": "ZONA_ATTIVAZIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "zona attivazione"
+    },
+    {
+        "name": "ZONA_FATT",
+        "type": "string",
+        "mode": "nullable",
+        "description": "zona fatt"
+    },
+    {
+        "name": "TIPO_SEGMENTO_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "tipo segmento sim"
+    },
+    {
+        "name": "CUSTOMER_ID_TEL_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "customer id tel profil"
+    },
+    {
+        "name": "CUSTOMER_ID_PAGANTE_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "customer id pagante profil"
+    },
+    {
+        "name": "CAP",
+        "type": "string",
+        "mode": "nullable",
+        "description": "cap"
+    },
+    {
+        "name": "CITTA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "citta"
+    },
+    {
+        "name": "PROVINCIA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "provincia"
+    },
+    {
+        "name": "DATA_NASCITA_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data nascita profil"
+    },
+    {
+        "name": "SESSO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "sesso"
+    },
+    {
+        "name": "TUTELA_RISCHIO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "tutela rischio"
+    },
+    {
+        "name": "CONSENSO_COMMERCIALE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso commerciale"
+    },
+    {
+        "name": "METODO_PAGAMENTO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "metodo pagamento"
+    },
+    {
+        "name": "DIRECTORY",
+        "type": "string",
+        "mode": "nullable",
+        "description": "directory"
+    },
+    {
+        "name": "PIANO_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "piano id"
+    },
+    {
+        "name": "DATA_ATT_PIANO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data att piano"
+    },
+    {
+        "name": "FL_SIM_IN_CONVENZIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fl sim in convenzione"
+    },
+    {
+        "name": "CONVENZIONE_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "convenzione id"
+    },
+    {
+        "name": "STATUS",
+        "type": "string",
+        "mode": "nullable",
+        "description": "status"
+    },
+    {
+        "name": "ORIGINAL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "original"
+    },
+    {
+        "name": "REPLACEMENT",
+        "type": "string",
+        "mode": "nullable",
+        "description": "replacement"
+    },
+    {
+        "name": "NEW_SIM_ID_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "new sim id profil"
+    },
+    {
+        "name": "LAST_UPDATE_DATE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last update date"
+    },
+    {
+        "name": "FLAG_190",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag 190"
+    },
+    {
+        "name": "DONATING_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "donating id"
+    },
+    {
+        "name": "DATA_RICHIESTA_MNP_IN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data richiesta mnp in"
+    },
+    {
+        "name": "STATO_MNP_IN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "stato mnp in"
+    },
+    {
+        "name": "DATA_ESITO_MNP_IN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data esito mnp in"
+    },
+    {
+        "name": "DATA_CUTOVER_MNP_IN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data cutover mnp in"
+    },
+    {
+        "name": "RAGIONE_MNP_IN_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "ragione mnp in id"
+    },
+    {
+        "name": "NUM_PREC_RICHIESTE_MNP_OUT",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "num prec richieste mnp out"
+    },
+    {
+        "name": "RECIPIENT_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "recipient id"
+    },
+    {
+        "name": "DATA_RICHIESTA_MNP_OUT",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data richiesta mnp out"
+    },
+    {
+        "name": "STATO_MNP_OUT",
+        "type": "string",
+        "mode": "nullable",
+        "description": "stato mnp out"
+    },
+    {
+        "name": "DATA_ESITO_MNP_OUT",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data esito mnp out"
+    },
+    {
+        "name": "RAGIONE_MNP_OUT_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "ragione mnp out id"
+    },
+    {
+        "name": "NUMERO_RICHIESTE_MNP_OUT",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "numero richieste mnp out"
+    },
+    {
+        "name": "DATA_ATTIVAZIONE_CLI",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data attivazione cli"
+    },
+    {
+        "name": "RUOLO_MULTI_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ruolo multi sim"
+    },
+    {
+        "name": "LINK_SIM_ID_PRIMARIA_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "link sim id primaria profil"
+    },
+    {
+        "name": "OFFERTA_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "offerta id"
+    },
+    {
+        "name": "MSISDN_PRINCIPALE_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "msisdn principale profil"
+    },
+    {
+        "name": "SIM_CAPACITY_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "sim capacity id"
+    },
+    {
+        "name": "WEBCUSTOMER_ID_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "webcustomer id profil"
+    },
+    {
+        "name": "EG_SERVIZI_INFORMATIVI",
+        "type": "string",
+        "mode": "nullable",
+        "description": "eg servizi informativi"
+    },
+    {
+        "name": "EG_ELENCHI_CARTACEI",
+        "type": "string",
+        "mode": "nullable",
+        "description": "eg elenchi cartacei"
+    },
+    {
+        "name": "EG_RICERCA_DERIVATA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "eg ricerca derivata"
+    },
+    {
+        "name": "EG_INFORMAZIONI_COMMERCIALE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "eg informazioni commerciale"
+    },
+    {
+        "name": "RU_DATA_NASCITA_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru data nascita profil"
+    },
+    {
+        "name": "RU_SESSO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru sesso"
+    },
+    {
+        "name": "RU_CAP",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru cap"
+    },
+    {
+        "name": "RU_COMUNE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru comune"
+    },
+    {
+        "name": "RU_PROVINCIA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru provincia"
+    },
+    {
+        "name": "RU_RECORD_QUALITY",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "ru record quality"
+    },
+    {
+        "name": "RU_NATURA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ru natura"
+    },
+    {
+        "name": "CLIENTE_RU",
+        "type": "string",
+        "mode": "nullable",
+        "description": "cliente ru"
+    },
+    {
+        "name": "PROMO_2G",
+        "type": "string",
+        "mode": "nullable",
+        "description": "promo 2g"
+    },
+    {
+        "name": "INFO_COMMERCIALE_TELEFONO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "info commerciale telefono"
+    },
+    {
+        "name": "INFO_COMMERCIALE_ALTRI_CANALI",
+        "type": "string",
+        "mode": "nullable",
+        "description": "info commerciale altri canali"
+    },
+    {
+        "name": "RICERCA_AGGREGATA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ricerca aggregata"
+    },
+    {
+        "name": "PIANO_ID_OLD",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "piano id old"
+    },
+    {
+        "name": "REASON_OLD",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "reason old"
+    },
+    {
+        "name": "PIANO_ID_NEW",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "piano id new"
+    },
+    {
+        "name": "DATA_ULTIMA_VAR_CONSENSO_COMM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ultima var consenso comm"
+    },
+    {
+        "name": "LAST_UDPATE_ANAG_CUSTOMER_ID",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last udpate anag customer id"
+    },
+    {
+        "name": "LAST_UDPATE_ANAG_REALUSER",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last udpate anag realuser"
+    },
+    {
+        "name": "FLAG_BUNDLE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag bundle"
+    },
+    {
+        "name": "FLAG_GN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag gn"
+    },
+    {
+        "name": "IMSI",
+        "type": "string",
+        "mode": "nullable",
+        "description": "imsi"
+    },
+    {
+        "name": "PROMO_BONUS_PUNTI_ATTIVA",
+        "type": "string",
+        "mode": "nullable",
+        "description": "promo bonus punti attiva"
+    },
+    {
+        "name": "FLAG_DVBH",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag dvbh"
+    },
+    {
+        "name": "FL_FAMILY",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fl family"
+    },
+    {
+        "name": "FL_FAMILY_LOYALTY",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fl family loyalty"
+    },
+    {
+        "name": "FLAG_DSL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag dsl"
+    },
+    {
+        "name": "STATO_DSL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "stato dsl"
+    },
+    {
+        "name": "PSTN_DSL_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "pstn dsl profil"
+    },
+    {
+        "name": "FLAG_CONVERSIONE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag conversione"
+    },
+    {
+        "name": "FLAG_IMMIGRATO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag immigrato"
+    },
+    {
+        "name": "ACCOUNT_ID_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "account id profil"
+    },
+    {
+        "name": "DT_FIRST_SUB_ACTIV",
+        "type": "string",
+        "mode": "nullable",
+        "description": "dt first sub activ"
+    },
+    {
+        "name": "DUAL_PLAY_ID",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "dual play id"
+    },
+    {
+        "name": "SENIORITY_DATE",
+        "type": "string",
+        "mode": "nullable",
+        "description": "seniority date"
+    },
+    {
+        "name": "FLAG_V1",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag v1"
+    },
+    {
+        "name": "FLAG_SMHS",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag smhs"
+    },
+    {
+        "name": "CUSTCODE_PAG_PROFIL",
+        "type": "string",
+        "mode": "nullable",
+        "description": "custcode pag profil"
+    },
+    {
+        "name": "CITTA_PAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "citta pag"
+    },
+    {
+        "name": "PROVINCIA_PAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "provincia pag"
+    },
+    {
+        "name": "FATT_CAP_PAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fatt cap pag"
+    },
+    {
+        "name": "FATT_CITTA_PAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fatt citta pag"
+    },
+    {
+        "name": "FATT_PV_PAG",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fatt pv pag"
+    },
+    {
+        "name": "FLAG_SINGLE_PLAY_OFFER",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag single play offer"
+    },
+    {
+        "name": "GROUP_ID",
+        "type": "string",
+        "mode": "nullable",
+        "description": "group id"
+    },
+    {
+        "name": "FLAG_OBLIO",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag oblio"
+    },
+    {
+        "name": "FLAG_MIN",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag min"
+    },
+    {
+        "name": "CONSENSO_PROFILAZIONE_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso profilazione sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONSENSO_PROF_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var consenso prof sim"
+    },
+    {
+        "name": "CONSENSO_GEOLOCALIZZAZIONE_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso geolocalizzazione sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_GEOLOC_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons geoloc sim"
+    },
+    {
+        "name": "CONSENSO_HAPPY_FULL_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso happy full sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_HAPPY_FL_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons happy fl sim"
+    },
+    {
+        "name": "CONSENSO_HAPPY_LIGHT_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso happy light sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_HAPPY_LG_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons happy lg sim"
+    },
+    {
+        "name": "FAMILY_OPPOSITION_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "family opposition sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_FAMILY_OPPOS_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var family oppos sim"
+    },
+    {
+        "name": "CONS_PERSONAL_DATA_ENRICH_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "cons personal data enrich sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_DATA_ENR_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons data enr sim"
+    },
+    {
+        "name": "CONSENSO_DATA_TRANSFER_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso data transfer sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_DATA_TRS_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons data trs sim"
+    },
+    {
+        "name": "VODAFONE_ANALYTICS_OPPOS_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "vodafone analytics oppos sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_VF_ANALYT_OPP_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var vf analyt opp sim"
+    },
+    {
+        "name": "FEDELTA_OPPOSITION_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fedelta opposition sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_FEDELTA_OPPOS_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var fedelta oppos sim"
+    },
+    {
+        "name": "WEB_ANALYSIS_OPPOSITION_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "web analysis opposition sim"
+    },
+    {
+        "name": "DATA_ULT_VAR_WEB_AN_OPP_SIM",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var web an opp sim"
+    },
+    {
+        "name": "CONSENSO_PROFIL_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso profil cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_PROF_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons prof cust"
+    },
+    {
+        "name": "CONSENSO_GEOLOCAL_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso geolocal cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_GEOLOC_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons geoloc cust"
+    },
+    {
+        "name": "CONSENSO_COMMERCIALE_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso commerciale cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_COMM_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons comm cust"
+    },
+    {
+        "name": "FAMILY_OPPOSITION_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "family opposition cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_FAMILY_OPP_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var family opp cust"
+    },
+    {
+        "name": "CONS_PERSONAL_DATA_ENRICH_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "cons personal data enrich cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_ENRICH_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons enrich cust"
+    },
+    {
+        "name": "CONSENSO_DATA_TRANSFER_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "consenso data transfer cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_CONS_TRANSF_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var cons transf cust"
+    },
+    {
+        "name": "VODAFONE_ANALYTICS_OPPOS_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "vodafone analytics oppos cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_VF_ANALYTOPP_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var vf analytopp cust"
+    },
+    {
+        "name": "FEDELTA_OPPOSITION_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "fedelta opposition cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_FEDELTA_OPP_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var fedelta opp cust"
+    },
+    {
+        "name": "WEB_ANALYSIS_OPPOSITION_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "web analysis opposition cust"
+    },
+    {
+        "name": "DATA_ULT_VAR_WEB_AN_OPP_CUST",
+        "type": "string",
+        "mode": "nullable",
+        "description": "data ult var web an opp cust"
+    },
+    {
+        "name": "SERVICE_PROCESSED_AT",
+        "mode": "required",
+        "type": "timestamp",
+        "description": "service processed at"
+    },
+    {
+        "name": "SERVICE_FILE_ID",
+        "mode": "required",
+        "type": "string",
+        "description": "service file id"
+    },
+    {
+        "name": "partition_year_month_day",
+        "type": "timestamp",
+        "mode": "required",
+        "description": "partition standard column"
+    }
+]

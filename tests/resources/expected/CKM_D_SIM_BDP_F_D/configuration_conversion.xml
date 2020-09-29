@@ -1,0 +1,213 @@
+<configuration debugMode="false" verbose="false">
+  <generalConfiguration>
+    <properties>
+      <property name="rootPath" value="gs://vfit-dh-rawingested"/>
+      <property name="gcsOutputRootPath" value="gs://vfit-dh-bss-rawprepared"/>
+    </properties>
+  </generalConfiguration>
+  <dataConversions>
+    <dataConversion configurationId="f1435656-6dd1-4413-b84c-ddb6c57cfaa5" description="CkmDSimBdpFD">
+      <properties>
+        <property name="datasource" value="bss"/>
+        <property name="version" value="6.0"/>
+        <property name="country" value="it"/>
+        <property name="interface" value="CKM_D_SIM_BDP_F_D"/>
+        <property name="DeleteInputDataAfterSuccessfulConversion" value="false"/>
+        <property name="bigQueryProject" value="dh"/>
+        <property name="bigQueryDataCategory" value="bss"/>
+      </properties>
+      <inputFileSelectionCriteria>
+        <criteria name="MinimumNumberOfFiles" value="1"/>
+      </inputFileSelectionCriteria>
+      <dataRoot path="${rootPath}/${datasource}/${interface}/${version}"/>
+      <conversionActions>
+        <readAction name="ReadFromCsvAction">
+          <files separator="|" type="delimited" contains_header="true" charset="utf-8"/>
+        </readAction>
+        <conversionAction name="BasicConversionAction"/>
+        <writeActions>
+          <writeAction name="WriteToBigQueryAction">
+            <config>
+              <dataset name="vf${country}_${bigQueryProject}_lake_${bigQueryDataCategory}_rawprepared_s"/>
+              <tableName name="ckm_d_sim_bdp_f_d"/>
+            </config>
+          </writeAction>
+          <writeAction name="WriteToParquetAction">
+            <config>
+              <path>${gcsOutputRootPath}/${interface}/${version}/parquet</path>
+            </config>
+          </writeAction>
+        </writeActions>
+      </conversionActions>
+      <schema>
+        <field name="SIM_ID_PROFIL" required="false" type="string"/>
+        <field name="MSISDN_NUM_PROFIL" required="false" type="string"/>
+        <field name="TIPO_CARTA" required="false" type="string"/>
+        <field name="PIANO_TIPO_ID" required="false" type="string"/>
+        <field name="DATA_ATTIVAZIONE" required="false" type="string"/>
+        <field name="MODO_ATTIVAZIONE" required="false" type="string"/>
+        <field name="DATA_ANAG" required="false" type="string"/>
+        <field name="DATA_DISATTIVAZIONE" required="false" type="string"/>
+        <field name="REASON" required="false" type="integer"/>
+        <field name="TIPO_REASON" required="false" type="integer"/>
+        <field name="INIZIATIVA_REASON" required="false" type="string"/>
+        <field name="COMMITTENTE_ID" required="false" type="integer"/>
+        <field name="CANALE_ID" required="false" type="string"/>
+        <field name="DEALER_ID" required="false" type="integer"/>
+        <field name="PRODUCT_CODE" required="false" type="string"/>
+        <field name="ZONA_RESIDENZA" required="false" type="string"/>
+        <field name="ZONA_ATTIVAZIONE" required="false" type="string"/>
+        <field name="ZONA_FATT" required="false" type="string"/>
+        <field name="TIPO_SEGMENTO_SIM" required="false" type="string"/>
+        <field name="CUSTOMER_ID_TEL_PROFIL" required="false" type="string"/>
+        <field name="CUSTOMER_ID_PAGANTE_PROFIL" required="false" type="string"/>
+        <field name="CAP" required="false" type="string"/>
+        <field name="CITTA" required="false" type="string"/>
+        <field name="PROVINCIA" required="false" type="string"/>
+        <field name="DATA_NASCITA_PROFIL" required="false" type="string"/>
+        <field name="SESSO" required="false" type="string"/>
+        <field name="TUTELA_RISCHIO" required="false" type="string"/>
+        <field name="CONSENSO_COMMERCIALE" required="false" type="string"/>
+        <field name="METODO_PAGAMENTO" required="false" type="string"/>
+        <field name="DIRECTORY" required="false" type="string"/>
+        <field name="PIANO_ID" required="false" type="integer"/>
+        <field name="DATA_ATT_PIANO" required="false" type="string"/>
+        <field name="FL_SIM_IN_CONVENZIONE" required="false" type="string"/>
+        <field name="CONVENZIONE_ID" required="false" type="integer"/>
+        <field name="STATUS" required="false" type="string"/>
+        <field name="ORIGINAL" required="false" type="string"/>
+        <field name="REPLACEMENT" required="false" type="string"/>
+        <field name="NEW_SIM_ID_PROFIL" required="false" type="string"/>
+        <field name="LAST_UPDATE_DATE" required="false" type="string"/>
+        <field name="FLAG_190" required="false" type="string"/>
+        <field name="DONATING_ID" required="false" type="integer"/>
+        <field name="DATA_RICHIESTA_MNP_IN" required="false" type="string"/>
+        <field name="STATO_MNP_IN" required="false" type="string"/>
+        <field name="DATA_ESITO_MNP_IN" required="false" type="string"/>
+        <field name="DATA_CUTOVER_MNP_IN" required="false" type="string"/>
+        <field name="RAGIONE_MNP_IN_ID" required="false" type="integer"/>
+        <field name="NUM_PREC_RICHIESTE_MNP_OUT" required="false" type="integer"/>
+        <field name="RECIPIENT_ID" required="false" type="integer"/>
+        <field name="DATA_RICHIESTA_MNP_OUT" required="false" type="string"/>
+        <field name="STATO_MNP_OUT" required="false" type="string"/>
+        <field name="DATA_ESITO_MNP_OUT" required="false" type="string"/>
+        <field name="RAGIONE_MNP_OUT_ID" required="false" type="integer"/>
+        <field name="NUMERO_RICHIESTE_MNP_OUT" required="false" type="integer"/>
+        <field name="DATA_ATTIVAZIONE_CLI" required="false" type="string"/>
+        <field name="RUOLO_MULTI_SIM" required="false" type="string"/>
+        <field name="LINK_SIM_ID_PRIMARIA_PROFIL" required="false" type="string"/>
+        <field name="OFFERTA_ID" required="false" type="integer"/>
+        <field name="MSISDN_PRINCIPALE_PROFIL" required="false" type="string"/>
+        <field name="SIM_CAPACITY_ID" required="false" type="integer"/>
+        <field name="WEBCUSTOMER_ID_PROFIL" required="false" type="string"/>
+        <field name="EG_SERVIZI_INFORMATIVI" required="false" type="string"/>
+        <field name="EG_ELENCHI_CARTACEI" required="false" type="string"/>
+        <field name="EG_RICERCA_DERIVATA" required="false" type="string"/>
+        <field name="EG_INFORMAZIONI_COMMERCIALE" required="false" type="string"/>
+        <field name="RU_DATA_NASCITA_PROFIL" required="false" type="string"/>
+        <field name="RU_SESSO" required="false" type="string"/>
+        <field name="RU_CAP" required="false" type="string"/>
+        <field name="RU_COMUNE" required="false" type="string"/>
+        <field name="RU_PROVINCIA" required="false" type="string"/>
+        <field name="RU_RECORD_QUALITY" required="false" type="integer"/>
+        <field name="RU_NATURA" required="false" type="string"/>
+        <field name="CLIENTE_RU" required="false" type="string"/>
+        <field name="PROMO_2G" required="false" type="string"/>
+        <field name="INFO_COMMERCIALE_TELEFONO" required="false" type="string"/>
+        <field name="INFO_COMMERCIALE_ALTRI_CANALI" required="false" type="string"/>
+        <field name="RICERCA_AGGREGATA" required="false" type="string"/>
+        <field name="PIANO_ID_OLD" required="false" type="integer"/>
+        <field name="REASON_OLD" required="false" type="integer"/>
+        <field name="PIANO_ID_NEW" required="false" type="integer"/>
+        <field name="DATA_ULTIMA_VAR_CONSENSO_COMM" required="false" type="string"/>
+        <field name="LAST_UDPATE_ANAG_CUSTOMER_ID" required="false" type="string"/>
+        <field name="LAST_UDPATE_ANAG_REALUSER" required="false" type="string"/>
+        <field name="FLAG_BUNDLE" required="false" type="string"/>
+        <field name="FLAG_GN" required="false" type="string"/>
+        <field name="IMSI" required="false" type="string"/>
+        <field name="PROMO_BONUS_PUNTI_ATTIVA" required="false" type="string"/>
+        <field name="FLAG_DVBH" required="false" type="string"/>
+        <field name="FL_FAMILY" required="false" type="string"/>
+        <field name="FL_FAMILY_LOYALTY" required="false" type="string"/>
+        <field name="FLAG_DSL" required="false" type="string"/>
+        <field name="STATO_DSL" required="false" type="string"/>
+        <field name="PSTN_DSL_PROFIL" required="false" type="string"/>
+        <field name="FLAG_CONVERSIONE" required="false" type="string"/>
+        <field name="FLAG_IMMIGRATO" required="false" type="string"/>
+        <field name="ACCOUNT_ID_PROFIL" required="false" type="string"/>
+        <field name="DT_FIRST_SUB_ACTIV" required="false" type="string"/>
+        <field name="DUAL_PLAY_ID" required="false" type="integer"/>
+        <field name="SENIORITY_DATE" required="false" type="string"/>
+        <field name="FLAG_V1" required="false" type="string"/>
+        <field name="FLAG_SMHS" required="false" type="string"/>
+        <field name="CUSTCODE_PAG_PROFIL" required="false" type="string"/>
+        <field name="CITTA_PAG" required="false" type="string"/>
+        <field name="PROVINCIA_PAG" required="false" type="string"/>
+        <field name="FATT_CAP_PAG" required="false" type="string"/>
+        <field name="FATT_CITTA_PAG" required="false" type="string"/>
+        <field name="FATT_PV_PAG" required="false" type="string"/>
+        <field name="FLAG_SINGLE_PLAY_OFFER" required="false" type="string"/>
+        <field name="GROUP_ID" required="false" type="string"/>
+        <field name="FLAG_OBLIO" required="false" type="string"/>
+        <field name="FLAG_MIN" required="false" type="string"/>
+        <field name="CONSENSO_PROFILAZIONE_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONSENSO_PROF_SIM" required="false" type="string"/>
+        <field name="CONSENSO_GEOLOCALIZZAZIONE_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_GEOLOC_SIM" required="false" type="string"/>
+        <field name="CONSENSO_HAPPY_FULL_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_HAPPY_FL_SIM" required="false" type="string"/>
+        <field name="CONSENSO_HAPPY_LIGHT_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_HAPPY_LG_SIM" required="false" type="string"/>
+        <field name="FAMILY_OPPOSITION_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_FAMILY_OPPOS_SIM" required="false" type="string"/>
+        <field name="CONS_PERSONAL_DATA_ENRICH_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_DATA_ENR_SIM" required="false" type="string"/>
+        <field name="CONSENSO_DATA_TRANSFER_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_DATA_TRS_SIM" required="false" type="string"/>
+        <field name="VODAFONE_ANALYTICS_OPPOS_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_VF_ANALYT_OPP_SIM" required="false" type="string"/>
+        <field name="FEDELTA_OPPOSITION_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_FEDELTA_OPPOS_SIM" required="false" type="string"/>
+        <field name="WEB_ANALYSIS_OPPOSITION_SIM" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_WEB_AN_OPP_SIM" required="false" type="string"/>
+        <field name="CONSENSO_PROFIL_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_PROF_CUST" required="false" type="string"/>
+        <field name="CONSENSO_GEOLOCAL_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_GEOLOC_CUST" required="false" type="string"/>
+        <field name="CONSENSO_COMMERCIALE_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_COMM_CUST" required="false" type="string"/>
+        <field name="FAMILY_OPPOSITION_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_FAMILY_OPP_CUST" required="false" type="string"/>
+        <field name="CONS_PERSONAL_DATA_ENRICH_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_ENRICH_CUST" required="false" type="string"/>
+        <field name="CONSENSO_DATA_TRANSFER_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_CONS_TRANSF_CUST" required="false" type="string"/>
+        <field name="VODAFONE_ANALYTICS_OPPOS_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_VF_ANALYTOPP_CUST" required="false" type="string"/>
+        <field name="FEDELTA_OPPOSITION_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_FEDELTA_OPP_CUST" required="false" type="string"/>
+        <field name="WEB_ANALYSIS_OPPOSITION_CUST" required="false" type="string"/>
+        <field name="DATA_ULT_VAR_WEB_AN_OPP_CUST" required="false" type="string"/>
+      </schema>
+      <fieldActions>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="SIM_ID_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}msisdn" actionParameter="anonymise" actionType="function" fieldName="MSISDN_NUM_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="CUSTOMER_ID_TEL_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="CUSTOMER_ID_PAGANTE_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="NEW_SIM_ID_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="LINK_SIM_ID_PRIMARIA_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}msisdn" actionParameter="anonymise" actionType="function" fieldName="MSISDN_PRINCIPALE_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="WEBCUSTOMER_ID_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}imsi" actionParameter="anonymise" actionType="function" fieldName="IMSI"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="PSTN_DSL_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="ACCOUNT_ID_PROFIL"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="CUSTCODE_PAG_PROFIL"/>
+      </fieldActions>
+      <partitions>
+        <partition name="year" position="year" source="property"/>
+        <partition name="month" position="month" source="property"/>
+        <partition name="day" position="day" source="property"/>
+      </partitions>
+    </dataConversion>
+  </dataConversions>
+</configuration>

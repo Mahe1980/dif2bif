@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<configuration debugMode="false" verbose="false">
+   <generalConfiguration>
+      <properties>
+         <property name="localRootPath" value="target/filesystem/local"/>
+         <property name="hdfsRootPath" value="target/filesystem/hdfs"/>
+      </properties>
+   </generalConfiguration>
+   <dataFlows>
+      <dataFlow configurationId="f1435656-6dd1-4413-b84c-ddb6c57cfaa5" description="CKM_D_SIM_BDP_F_D Ingestion" name="CKM_D_SIM_BDP_F_D">
+         <properties>
+            <property name="country" value="it"/>
+            <property name="datasource" value="ckm"/>
+            <property name="interface" value="CKM_D_SIM_BDP_F_D"/>
+            <property name="version" value="6.0"/>
+         </properties>
+         <preIngestionTasks>
+            <task enabled="true" name="FilenameMapperTask" stopOnFailure="true">
+               <integrityChecker name="CRC_CHECK">
+                  <parameters>
+                     <parameter name="fileExtension" value=".gz"/>
+                     <parameter name="crcExtension" value=".gz.ok"/>
+                     <parameter name="fieldSeparator" value="|"/>
+                  </parameters>
+               </integrityChecker>
+               <parameters>
+                  <parameter name="fileRegex" value="(CKM_D_SIM_BDP_F_D)_(?:\d+_)?(\d{4})(\d{2})(\d{2}).csv.gz"/>
+                  <parameter name="1" value="tableName"/>
+                  <parameter name="2" value="year"/>
+                  <parameter name="3" value="month"/>
+                  <parameter name="4" value="day"/>
+               </parameters>
+            </task>
+         </preIngestionTasks>
+         <from>
+            <path>${localRootPath}/vf_${country}/${datasource}/staging</path>
+         </from>
+         <to>
+            <path>${hdfsRootPath}/vf_${country}/bss/${tableName}/${version}/csv</path>
+            <partitions>
+               <partition name="year" position="year" source="property"/>
+               <partition name="month" position="month" source="property"/>
+               <partition name="day" position="day" source="property"/>
+            </partitions>
+         </to>
+         <archive path="${localRootPath}/vf_${country}/${datasource}/archive/${tableName}"/>
+         <errors path="${localRootPath}/vf_${country}/${datasource}/errors/${tableName}"/>
+      </dataFlow>
+   </dataFlows>
+</configuration>

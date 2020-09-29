@@ -1,0 +1,61 @@
+<configuration verbose="false" debugMode="false">
+  <generalConfiguration>
+    <properties>
+      <property name="rootPath" value="gs://vfes-dh-rawingested"/>
+      <property name="gcsOutputRootPath" value="gs://vfes-dh-cvm-rawprepared"/>
+    </properties>
+  </generalConfiguration>
+  <dataConversions>
+    <dataConversion configurationId="cba8204c-0385-4c82-a748-f85b6f7adb56" description="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M Conversion" name="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M">
+      <properties>
+        <property name="country" value="es"/>
+        <property name="datasource" value="cvm"/>
+        <property name="interface" value="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M"/>
+        <property name="version" value="1.1"/>
+        <property name="DeleteInputDataAfterSuccessfulConversion" value="false"/>
+        <property name="bigQueryProject" value="dh"/>
+        <property name="bigQueryDataCategory" value="cvm"/>
+      </properties>
+      <inputFileSelectionCriteria>
+        <criteria name="MinimumNumberOfFiles" value="1"/>
+      </inputFileSelectionCriteria>
+      <dataRoot path="${rootPath}/${datasource}/${interface}/${version}"/>
+      <conversionActions>
+        <readAction name="ReadFromCsvAction">
+          <files type="delimited" separator="\t" contains_header="false" charset="utf-8"/>
+        </readAction>
+        <conversionAction name="BasicConversionAction"/>
+        <writeActions>
+          <writeAction name="WriteToBigQueryAction">
+            <config>
+              <dataset name="vf${country}_${bigQueryProject}_lake_${bigQueryDataCategory}_rawprepared_s"/>
+              <tableName name="es_cvm_in_extr_dtos_riesg_finpr_m_datalab_m"/>
+            </config>
+          </writeAction>
+          <writeAction name="WriteToParquetAction">
+            <config>
+              <path>${gcsOutputRootPath}/${interface}/${version}/parquet</path>
+            </config>
+          </writeAction>
+        </writeActions>
+      </conversionActions>
+      <schema>
+        <field name="MSISDN" type="string" required="false"/>
+        <field name="NIF" type="string" required="false"/>
+        <field name="NUMERO_CUENTA" type="string" required="false"/>
+        <field name="ESTADO_SERVICIO" type="string" required="false"/>
+        <field name="CODIGO_DESCUENTO" type="string" required="false"/>
+        <field name="DESCRIPCION_DESCUENTO" type="string" required="false"/>
+        <field name="ESTADO_DESCUENTO" type="string" required="false"/>
+        <field name="FX_ACTIVACION_DTO" type="timestamp" required="false" format="yyyyMMdd"/>
+        <field name="FX_DESACTIVACION_DTO" type="timestamp" required="false" format="yyyyMMdd"/>
+      </schema>
+      <partitions>
+        <partition name="fileRegex" source="property" position="ES.CVM.(PREPFINAL|EXTRNIFS|POSTFINALACEXT|PREPTAR|IN_EXTR_AC_FINAL_POSPAGO_DIR_CORREGIDA|IN_EXTR_DTOS_RIESG_FINPR_F|IN_EXTR_DTOS_RIESG_FINPR_M).\w+.M.(\d{2})(\d{2})(\d{4})\d{0,}.gz"/>
+        <partition name="4" source="property" position="year"/>
+        <partition name="3" source="property" position="month"/>
+        <partition name="day" source="datetime_now"/>
+      </partitions>
+    </dataConversion>
+  </dataConversions>
+</configuration>

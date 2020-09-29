@@ -1,0 +1,116 @@
+<configuration debugMode="false" verbose="false">
+  <generalConfiguration>
+    <properties>
+      <property name="rootPath" value="gs://vfit-dh-rawingested"/>
+      <property name="gcsOutputRootPath" value="gs://vfit-dh-ckm-rawprepared"/>
+    </properties>
+  </generalConfiguration>
+  <dataConversions>
+    <dataConversion configurationId="45685889-8139-2102-8395-156890482256" description="DM_CAMPAIGN_BDP_D_D">
+      <properties>
+        <property name="datasource" value="ckm"/>
+        <property name="interface" value="DM_CAMPAIGN_BDP_D_D"/>
+        <property name="version" value="3.0"/>
+        <property name="country" value="it"/>
+        <property name="DeleteInputDataAfterSuccessfulConversion" value="false"/>
+        <property name="bigQueryProject" value="dh"/>
+        <property name="bigQueryDataCategory" value="ckm"/>
+      </properties>
+      <inputFileSelectionCriteria>
+        <criteria name="MinimumNumberOfFiles" value="1"/>
+      </inputFileSelectionCriteria>
+      <dataRoot path="${rootPath}/${datasource}/${interface}/${version}"/>
+      <conversionActions>
+        <readAction name="ReadFromCsvAction">
+          <files separator="|" type="delimited" contains_header="true" charset="utf-8"/>
+        </readAction>
+        <conversionAction name="BasicConversionAction"/>
+        <writeActions>
+          <writeAction name="WriteToBigQueryAction">
+            <config>
+              <dataset name="vf${country}_${bigQueryProject}_lake_${bigQueryDataCategory}_rawprepared_s"/>
+              <tableName name="dm_campaign_bdp_d_d"/>
+            </config>
+          </writeAction>
+          <writeAction name="WriteToParquetAction">
+            <config>
+              <path>${gcsOutputRootPath}/${interface}/${version}/parquet</path>
+            </config>
+          </writeAction>
+        </writeActions>
+      </conversionActions>
+      <schema>
+        <field name="date_target" required="false" type="string"/>
+        <field name="date_contact" required="false" type="string"/>
+        <field name="date_acceptance" required="false" type="string"/>
+        <field name="campaign_id" required="false" type="string"/>
+        <field name="keycode" required="false" type="string"/>
+        <field name="sim_id" required="false" type="string"/>
+        <field name="customer_id_payer" required="false" type="string"/>
+        <field name="customer_id_tel" required="false" type="string"/>
+        <field name="loyalty_id" required="false" type="string"/>
+        <field name="loyalty_status" required="false" type="string"/>
+        <field name="invoicing_zone_id" required="false" type="string"/>
+        <field name="residence_zone_id" required="false" type="string"/>
+        <field name="activation_zone_id" required="false" type="string"/>
+        <field name="scoring_class" required="false" type="string"/>
+        <field name="payment_method" required="false" type="string"/>
+        <field name="tariff_plan_id" required="false" type="string"/>
+        <field name="churn_tendency_index" required="false" type="string"/>
+        <field name="number_sms_sent" required="false" type="integer"/>
+        <field name="flag_target" required="false" type="string"/>
+        <field name="flag_contact" required="false" type="string"/>
+        <field name="flag_acceptance" required="false" type="string"/>
+        <field name="cycle" required="false" type="string"/>
+        <field name="flag_contact_attached" required="false" type="string"/>
+        <field name="date_contact_attached" required="false" type="string"/>
+        <field name="flag_acceptance_additional" required="false" type="string"/>
+        <field name="date_acceptance_additional" required="false" type="string"/>
+        <field name="lev_3_accep_date" required="false" type="string"/>
+        <field name="flag_lev_3_accep_date" required="false" type="string"/>
+        <field name="object_type_id" required="false" type="string"/>
+        <field name="product_id" required="false" type="string"/>
+        <field name="product_type_id" required="false" type="string"/>
+        <field name="channel_id" required="false" type="string"/>
+        <field name="number_renew" required="false" type="string"/>
+        <field name="activation_cost" required="false" type="double"/>
+        <field name="renew_cost" required="false" type="double"/>
+        <field name="sim_score" required="false" type="string"/>
+        <field name="campaign_wave" required="false" type="string"/>
+        <field name="start_validity_date" required="false" type="string"/>
+        <field name="end_validity_date" required="false" type="string"/>
+        <field name="category_type" required="false" type="string"/>
+        <field name="ivr_feedback" required="false" type="string"/>
+        <field name="mobile_user_id" required="false" type="string"/>
+        <field name="number_read_event" required="false" type="integer"/>
+        <field name="last_read_event_date" required="false" type="string"/>
+        <field name="number_visualised_event" required="false" type="integer"/>
+        <field name="last_visualised_event_date" required="false" type="string"/>
+        <field name="number_accepted_event" required="false" type="integer"/>
+        <field name="last_accepted_event_date" required="false" type="string"/>
+        <field name="bounce" required="false" type="string"/>
+        <field name="number_of_open" required="false" type="string"/>
+        <field name="number_of_clicks" required="false" type="string"/>
+        <field name="read_email_date" required="false" type="string"/>
+        <field name="click_email_date" required="false" type="string"/>
+        <field name="flag_read_email" required="false" type="string"/>
+        <field name="flag_click_email" required="false" type="string"/>
+        <field name="last_update" required="false" type="string"/>
+        <field name="n_vis" required="false" type="string"/>
+        <field name="last_vis_date" required="false" type="string"/>
+        <field name="last_act_date" required="false" type="string"/>
+        <field name="origin_url" required="false" type="string"/>
+      </schema>
+      <partitions>
+        <partition fieldType="integer" name="year" position="0:4" source="column:last_update"/>
+        <partition fieldType="integer" name="month" position="4:6" source="column:last_update"/>
+        <partition fieldType="integer" name="day" position="6:8" source="column:last_update"/>
+      </partitions>
+      <fieldActions>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="sim_id"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="customer_id_payer"/>
+        <fieldAction actionMethod="bdpmanon${anon_version}id" actionParameter="anonymise" actionType="function" fieldName="customer_id_tel"/>
+      </fieldActions>
+    </dataConversion>
+  </dataConversions>
+</configuration>

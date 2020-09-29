@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration debugMode="false" verbose="false">	
+	<generalConfiguration>
+		<properties>
+			<property value="/var/SP/data/staging" name="localRootPath"/>
+			<property value="/data/raw" name="hdfsRootPath"/>
+		</properties>
+	</generalConfiguration>
+	<dataFlows>
+		<dataFlow configurationId="cba8204c-0385-4c82-a748-f85b6f7adb56" name="Spain CVM" description="Spain CVM ingestion job">
+            <properties>
+                <property name="country" value="es"></property>
+                <property name="datasource" value="cvm"></property>
+                <property name="interface" value="all"></property>
+                <property name="version" value="1.1"></property>
+            </properties>
+            <preIngestionTasks>
+                <task name="FilenameMapperTask" enabled="true" stopOnFailure="true">
+                    <parameters>
+                        <parameter name="fileRegex" value="ES.CVM.(PREPFINAL|EXTRNIFS|POSTFINALACEXT|PREPTAR|IN_EXTR_AC_FINAL_POSPAGO_DIR_CORREGIDA|IN_EXTR_DTOS_RIESG_FINPR_F|IN_EXTR_DTOS_RIESG_FINPR_M).\w+.M.(\d{2})(\d{2})(\d{4})\d{0,}.gz"></parameter>
+                        <parameter name="1" value="tableName"></parameter>
+                        <parameter name="2" value="day"></parameter>
+                        <parameter name="3" value="month"></parameter>
+                        <parameter name="4" value="year"></parameter>
+                    </parameters>
+                </task>
+            </preIngestionTasks>
+            <from>
+                <path>${localRootPath}/vf_${country}/${datasource}/staging</path>
+            </from>
+            <to>
+                <path>${hdfsRootPath}/vf_${country}/${datasource}/ES_CVM_${tableName}_DATALAB_M/${version}/csv</path>
+                <partitions>
+                    <partition name="year" position="year" source="property"></partition>
+                    <partition name="month" position="month" source="property"></partition>
+                    <partition name="day" position="day" source="property"></partition>
+                </partitions>
+            </to>
+            <archive path="${localRootPath}/vf_${country}/${datasource}/archive/${tableName}"></archive>
+        </dataFlow>
+	</dataFlows>
+</configuration>

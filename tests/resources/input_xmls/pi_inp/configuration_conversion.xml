@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="hdfsRootPath" value="/data/raw"/>
+            <property name="localRootPath" value="/var/SP/data/staging"/>
+        </properties>
+    </generalConfiguration>
+    <dataConversions>
+         <dataConversion configurationId="008b1d8e-697d-47dc-856e-5798ec6c9b50" description="PT_pi_inp conversion">
+            <properties>
+                <property name="country" value="pt"></property>
+                <property name="datasource" value="mediatedcdrs"></property>
+                <property name="interface" value="pi_inp"></property>
+                <property name="version" value="1.0"></property>
+                <property name="contains_header" value="false"></property>
+                <property name="input_file_partition_size" value="256M"></property>
+                <property name="ignore_trailing_columns" value="true"></property>
+            </properties>
+            <inputFileSelectionCriteria>
+                <criteria name="MinimumNumberOfFiles" value="1"></criteria>
+            </inputFileSelectionCriteria>
+            <dataRoot path="${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}"></dataRoot>
+            <conversionActions>
+                <readAction name="ReadFromEncodedCsvAction">
+                    <files type="fixedWidth" charset="iso-8859-1">
+                        <field name="field1" start="0" end="14"/>
+                        <field name="field2" start="15" end="28"/>
+                        <field name="field3" start="29" end="44"/>
+                        <field name="field4" start="45" end="60"/>
+                        <field name="field5" start="61" end="76"/>
+                        <field name="field6" start="77" end="116"/>
+                        <field name="field7" start="117" end="124"/>
+                        <field name="field8" start="125" end="130"/>
+                        <field name="field9" start="131" end="160"/>
+                        <field name="field10" start="161" end="176"/>
+                        <field name="field11" start="177" end="196"/>
+                        <field name="field12" start="197" end="201"/>
+                        <field name="field13" start="202" end="206"/>
+                        <field name="field14" start="207" end="211"/>
+                        <field name="field15" start="212" end="241"/>
+                        <field name="field16" start="242" end="281"/>
+                        <field name="field17" start="282" end="285"/>
+                        <field name="field18" start="286" end="293"/>
+                        <field name="field19" start="294" end="301"/>
+                        <field name="field20" start="302" end="307"/>
+                        <field name="field21" start="308" end="352"/>
+                        <field name="field22" start="353" end="367"/>
+                        <field name="field23" start="368" end="412"/>
+                        <field name="field24" start="413" end="457"/>
+                        <field name="field25" start="458" end="502"/>
+                        <field name="field26" start="503" end="518"/>
+                        <field name="field27" start="519" end="528"/>
+                        <field name="field28" start="529" end="558"/>
+                        <field name="field29" start="559" end="578"/>
+                        <field name="field30" start="579" end="598"/>
+                        <field name="field31" start="599" end="618"/>
+                        <field name="field32" start="619" end="638"/>
+                        <field name="field33" start="639" end="658"/>
+                        <field name="field34" start="659" end="664"/>
+                        <field name="field35" start="665"/>
+                    </files>
+                </readAction>
+                <conversionAction name="BasicConversionAction"></conversionAction>
+                <writeAction name="WriteToParquetAction">
+                    <hive>
+                        <database name="raw_pt"></database>
+                        <tableName name="pi_inp"></tableName>
+                    </hive>
+                </writeAction>
+            </conversionActions>
+            <schema>
+                <field name="MSISDN" type="string" required="false"/>
+                <field name="StartDateTime" type="string" required="false"/>
+                <field name="PriceBand" type="string" required="false"/>
+                <field name="PriceBandType" type="string" required="false"/>
+                <field name="OfferType" type="string" required="false"/>
+                <field name="Description" type="string" required="false"/>
+                <field name="NetAmount" type="string" required="false"/>
+                <field name="Quantity" type="string" required="false"/>
+                <field name="ContentCategory" type="string" required="false"/>
+                <field name="ContentProvider" type="string" required="false"/>
+                <field name="TransactionID" type="string" required="false"/>
+                <field name="BillType" type="string" required="false"/>
+                <field name="UsageType" type="string" required="false"/>
+                <field name="DescriptionId" type="string" required="false"/>
+                <field name="ContentId" type="string" required="false"/>
+                <field name="AuthorizationId" type="string" required="false"/>
+                <field name="TaxRate" type="string" required="false"/>
+                <field name="TotalAmount" type="string" required="false"/>
+                <field name="Currency" type="string" required="false"/>
+                <field name="PaymentType" type="string" required="false"/>
+                <field name="PackageId" type="string" required="false"/>
+                <field name="PackageType" type="string" required="false"/>
+                <field name="PackageName" type="string" required="false"/>
+                <field name="ServiceId" type="string" required="false"/>
+                <field name="ServiceName" type="string" required="false"/>
+                <field name="SupplierId" type="string" required="false"/>
+                <field name="Volume" type="string" required="false"/>
+                <field name="ContentSubCategory" type="string" required="false"/>
+                <field name="DeliveryMechanism" type="string" required="false"/>
+                <field name="ProductCategory" type="string" required="false"/>
+                <field name="ProductSubCategory1" type="string" required="false"/>
+                <field name="ProductSubCategory2" type="string" required="false"/>
+                <field name="RevenueShareId" type="string" required="false"/>
+                <field name="NRN" type="string" required="false"/>
+                <field name="BillingNetAmount" type="string" required="false"/>
+            </schema>
+            <partitions>
+                <partition name="year" fieldType="integer" position="0:4" source="column:StartDateTime"></partition>
+                <partition name="month" fieldType="integer" position="4:6" source="column:StartDateTime"></partition>
+                <partition name="day" fieldType="integer" position="6:8" source="column:StartDateTime"></partition>
+            </partitions>
+            <fieldActions>
+                <fieldAction fieldName="MSISDN" actionType="function" actionParameter="removePhonePrefix"/>
+                <fieldAction fieldName="MSISDN" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptmsisdn"/>
+                <fieldAction fieldName="StartDateTime" actionType="function" actionParameter="standardiseDatetime" actionMethod="yyyyMMddHHmmss"/>
+                <fieldAction fieldName="StartDateTime" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptdatetime"/>
+                <fieldAction fieldName="AuthorizationId" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+                <fieldAction fieldName="PackageId" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+                <fieldAction fieldName="PackageType" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+                <fieldAction fieldName="PackageName" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+                <fieldAction fieldName="ServiceId" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+                <fieldAction fieldName="ServiceName" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonptid"/>
+            </fieldActions>
+        </dataConversion>
+	 </dataConversions>
+</configuration>

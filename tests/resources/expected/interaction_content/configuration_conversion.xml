@@ -1,0 +1,92 @@
+<configuration verbose="false" debugMode="false">
+  <generalConfiguration>
+    <properties>
+      <property name="rootPath" value="gs://vfde-dh-rawingested"/>
+      <property name="gcsOutputRootPath" value="gs://vfde-dh-customer_interaction-rawprepared"/>
+    </properties>
+  </generalConfiguration>
+  <dataConversions>
+    <dataConversion configurationId="17aff22b-4a86-4abb-99f1-9c3dbbdb446c" description="Conversion of Interaction table ">
+      <properties>
+        <property name="country" value="de"/>
+        <property name="datasource" value="customer_interaction"/>
+        <property name="interface" value="interaction_content"/>
+        <property name="version" value="1.0"/>
+        <property name="DeleteInputDataAfterSuccessfulConversion" value="false"/>
+        <property name="bigQueryProject" value="dh"/>
+        <property name="bigQueryDataCategory" value="customer_interaction"/>
+      </properties>
+      <inputFileSelectionCriteria>
+        <criteria name="MinimumNumberOfFiles" value="1"/>
+      </inputFileSelectionCriteria>
+      <dataRoot path="${rootPath}/${datasource}/${interface}/${version}"/>
+      <conversionActions>
+        <readAction name="ReadFromCsvAction">
+          <files type="delimited" separator="|" contains_header="true" charset="utf-8"/>
+        </readAction>
+        <conversionAction name="BasicConversionAction"/>
+        <writeActions>
+          <writeAction name="WriteToBigQueryAction">
+            <config>
+              <dataset name="vf${country}_${bigQueryProject}_lake_${bigQueryDataCategory}_rawprepared_s"/>
+              <tableName name="interaction_content"/>
+            </config>
+          </writeAction>
+          <writeAction name="WriteToParquetAction">
+            <config>
+              <path>${gcsOutputRootPath}/${interface}/${version}/parquet</path>
+            </config>
+          </writeAction>
+        </writeActions>
+      </conversionActions>
+      <schema>
+        <field name="ID" type="string" format="" required="true"/>
+        <field name="START_TIME" type="string" format="yyyyMMddHHmmss" required="true"/>
+        <field name="SEQUENCE_ID" type="integer" format="" required="true"/>
+        <field name="CONTENT_END" type="integer" format="" required="false"/>
+        <field name="CONTENT_ORIGINATOR" type="string" format="" required="false"/>
+        <field name="CONTENT_RESULT" type="integer" format="" required="false"/>
+        <field name="STARTDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+        <field name="ENDDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+        <field name="TIMESHIFT" type="integer" format="" required="false"/>
+        <field name="PARENTID" type="string" format="" required="false"/>
+        <field name="THREADID" type="string" format="" required="false"/>
+        <field name="STATUS" type="integer" format="" required="false"/>
+        <field name="ENTITYTYPEID" type="integer" format="" required="false"/>
+        <field name="MEDIATYPEID" type="string" format="" required="false"/>
+        <field name="TYPEID" type="string" format="" required="false"/>
+        <field name="SUBTYPEID" type="string" format="" required="false"/>
+        <field name="EXTERNALID" type="string" format="" required="false"/>
+        <field name="OWNERID" type="integer" format="" required="false"/>
+        <field name="CONTACTID" type="string" format="" required="false"/>
+        <field name="WAIT_DURATION" type="integer" format="" required="false"/>
+        <field name="CONTENT_DURATION" type="integer" format="" required="false"/>
+        <field name="CATEGORYID" type="string" format="" required="false"/>
+        <field name="CREATORAPPID" type="integer" format="" required="false"/>
+        <field name="SUBJECT" type="string" format="" required="false"/>
+        <field name="TEXT" type="string" format="" required="false"/>
+        <field name="CREATED_TIME" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+        <field name="UPDATED_TIME" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+        <field name="UPDATE_NEEDED" type="integer" format="" required="false"/>
+        <field name="INTERACTION_UPDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+        <field name="SEGMENT_UPDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false"/>
+      </schema>
+      <fieldActions>
+        <fieldAction fieldName="ID" actionType="function" actionParameter="cleanFieldIf" actionMethod="hasNoAlphanumericCharacters"/>
+        <fieldAction fieldName="ID" actionMethod="bdpranon${anon_version}id" actionParameter="anonymise" actionType="function"/>
+        <fieldAction fieldName="START_TIME" actionMethod="bdpranon${anon_version}datetime" actionParameter="anonymise" actionType="function"/>
+        <fieldAction fieldName="CONTACTID" actionMethod="bdpranon${anon_version}id" actionParameter="anonymise" actionType="function"/>
+        <fieldAction fieldName="SUBJECT" actionMethod="(?i)[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" actionParameter="replace" actionType="function" actionArguments="replacementValue=&lt;email@replaced\&gt;"/>
+        <fieldAction fieldName="TEXT" actionMethod="(?i)[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" actionParameter="replace" actionType="function" actionArguments="replacementValue=&lt;email@replaced\&gt;"/>
+        <fieldAction fieldName="SUBJECT" actionMethod="\d{4,}" actionType="function" actionParameter="replace" actionArguments="replacementValue=&lt;phone number&gt;"/>
+        <fieldAction fieldName="TEXT" actionMethod="\d{4,}" actionType="function" actionParameter="replace" actionArguments="replacementValue=&lt;phone number&gt;"/>
+      </fieldActions>
+      <partitions>
+        <partition name="year" fieldType="integer" source="column:CREATED_TIME" position="0:4"/>
+        <partition name="month" fieldType="integer" source="column:CREATED_TIME" position="5:7"/>
+        <partition name="day" fieldType="integer" source="column:CREATED_TIME" position="8:10"/>
+      </partitions>
+    </dataConversion>
+  </dataConversions>
+</configuration>
+

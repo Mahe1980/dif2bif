@@ -1,0 +1,380 @@
+[
+    {
+        "name": "date_target",
+        "type": "string",
+        "mode": "nullable",
+        "description": "date target"
+    },
+    {
+        "name": "date_contact",
+        "type": "string",
+        "mode": "nullable",
+        "description": "date contact"
+    },
+    {
+        "name": "date_acceptance",
+        "type": "string",
+        "mode": "nullable",
+        "description": "date acceptance"
+    },
+    {
+        "name": "campaign_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "campaign id"
+    },
+    {
+        "name": "keycode",
+        "type": "string",
+        "mode": "nullable",
+        "description": "keycode"
+    },
+    {
+        "name": "sim_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "sim id"
+    },
+    {
+        "name": "customer_id_payer",
+        "type": "string",
+        "mode": "nullable",
+        "description": "customer id payer"
+    },
+    {
+        "name": "customer_id_tel",
+        "type": "string",
+        "mode": "nullable",
+        "description": "customer id tel"
+    },
+    {
+        "name": "loyalty_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "loyalty id"
+    },
+    {
+        "name": "loyalty_status",
+        "type": "string",
+        "mode": "nullable",
+        "description": "loyalty status"
+    },
+    {
+        "name": "invoicing_zone_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "invoicing zone id"
+    },
+    {
+        "name": "residence_zone_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "residence zone id"
+    },
+    {
+        "name": "activation_zone_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "activation zone id"
+    },
+    {
+        "name": "scoring_class",
+        "type": "string",
+        "mode": "nullable",
+        "description": "scoring class"
+    },
+    {
+        "name": "payment_method",
+        "type": "string",
+        "mode": "nullable",
+        "description": "payment method"
+    },
+    {
+        "name": "tariff_plan_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "tariff plan id"
+    },
+    {
+        "name": "churn_tendency_index",
+        "type": "string",
+        "mode": "nullable",
+        "description": "churn tendency index"
+    },
+    {
+        "name": "number_sms_sent",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "number sms sent"
+    },
+    {
+        "name": "flag_target",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag target"
+    },
+    {
+        "name": "flag_contact",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag contact"
+    },
+    {
+        "name": "flag_acceptance",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag acceptance"
+    },
+    {
+        "name": "cycle",
+        "type": "string",
+        "mode": "nullable",
+        "description": "cycle"
+    },
+    {
+        "name": "flag_contact_attached",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag contact attached"
+    },
+    {
+        "name": "date_contact_attached",
+        "type": "string",
+        "mode": "nullable",
+        "description": "date contact attached"
+    },
+    {
+        "name": "flag_acceptance_additional",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag acceptance additional"
+    },
+    {
+        "name": "date_acceptance_additional",
+        "type": "string",
+        "mode": "nullable",
+        "description": "date acceptance additional"
+    },
+    {
+        "name": "lev_3_accep_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "lev 3 accep date"
+    },
+    {
+        "name": "flag_lev_3_accep_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag lev 3 accep date"
+    },
+    {
+        "name": "object_type_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "object type id"
+    },
+    {
+        "name": "product_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "product id"
+    },
+    {
+        "name": "product_type_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "product type id"
+    },
+    {
+        "name": "channel_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "channel id"
+    },
+    {
+        "name": "number_renew",
+        "type": "string",
+        "mode": "nullable",
+        "description": "number renew"
+    },
+    {
+        "name": "activation_cost",
+        "type": "numeric",
+        "mode": "nullable",
+        "description": "activation cost"
+    },
+    {
+        "name": "renew_cost",
+        "type": "numeric",
+        "mode": "nullable",
+        "description": "renew cost"
+    },
+    {
+        "name": "sim_score",
+        "type": "string",
+        "mode": "nullable",
+        "description": "sim score"
+    },
+    {
+        "name": "campaign_wave",
+        "type": "string",
+        "mode": "nullable",
+        "description": "campaign wave"
+    },
+    {
+        "name": "start_validity_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "start validity date"
+    },
+    {
+        "name": "end_validity_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "end validity date"
+    },
+    {
+        "name": "category_type",
+        "type": "string",
+        "mode": "nullable",
+        "description": "category type"
+    },
+    {
+        "name": "ivr_feedback",
+        "type": "string",
+        "mode": "nullable",
+        "description": "ivr feedback"
+    },
+    {
+        "name": "mobile_user_id",
+        "type": "string",
+        "mode": "nullable",
+        "description": "mobile user id"
+    },
+    {
+        "name": "number_read_event",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "number read event"
+    },
+    {
+        "name": "last_read_event_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last read event date"
+    },
+    {
+        "name": "number_visualised_event",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "number visualised event"
+    },
+    {
+        "name": "last_visualised_event_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last visualised event date"
+    },
+    {
+        "name": "number_accepted_event",
+        "type": "int64",
+        "mode": "nullable",
+        "description": "number accepted event"
+    },
+    {
+        "name": "last_accepted_event_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last accepted event date"
+    },
+    {
+        "name": "bounce",
+        "type": "string",
+        "mode": "nullable",
+        "description": "bounce"
+    },
+    {
+        "name": "number_of_open",
+        "type": "string",
+        "mode": "nullable",
+        "description": "number of open"
+    },
+    {
+        "name": "number_of_clicks",
+        "type": "string",
+        "mode": "nullable",
+        "description": "number of clicks"
+    },
+    {
+        "name": "read_email_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "read email date"
+    },
+    {
+        "name": "click_email_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "click email date"
+    },
+    {
+        "name": "flag_read_email",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag read email"
+    },
+    {
+        "name": "flag_click_email",
+        "type": "string",
+        "mode": "nullable",
+        "description": "flag click email"
+    },
+    {
+        "name": "last_update",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last update"
+    },
+    {
+        "name": "n_vis",
+        "type": "string",
+        "mode": "nullable",
+        "description": "n vis"
+    },
+    {
+        "name": "last_vis_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last vis date"
+    },
+    {
+        "name": "last_act_date",
+        "type": "string",
+        "mode": "nullable",
+        "description": "last act date"
+    },
+    {
+        "name": "origin_url",
+        "type": "string",
+        "mode": "nullable",
+        "description": "origin url"
+    },
+    {
+        "name": "SERVICE_PROCESSED_AT",
+        "mode": "required",
+        "type": "timestamp",
+        "description": "service processed at"
+    },
+    {
+        "name": "SERVICE_FILE_ID",
+        "mode": "required",
+        "type": "string",
+        "description": "service file id"
+    },
+    {
+        "name": "partition_year_month_day",
+        "type": "timestamp",
+        "mode": "required",
+        "description": "partition standard column"
+    }
+]

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="hdfsRootPath" value="/data/raw"/>
+            <property name="localRootPath" value="/var/SP/data/staging"/>
+        </properties>
+    </generalConfiguration>
+    <dataConversions>
+		<dataConversion configurationId="3fc8e5b7-be0c-489e-a62c-e3dcf601673b" description="ZERO_EURO_THRESHOLD_CROSSING">
+            <properties>
+                <property name="country" value="it"></property>
+                <property name="datasource" value="meg"></property>
+                <property name="interface" value="ZERO_EURO_THRESHOLD_CROSSING"></property>
+                <property name="version" value="1.0"></property>
+                <property name="contains_header" value="true"></property>
+                <property name="DeleteInputDataAfterSuccessfulConversion" value="false"></property>
+            </properties>
+            <inputFileSelectionCriteria>
+                <criteria name="MinimumNumberOfFiles" value="1"></criteria>
+            </inputFileSelectionCriteria>
+            <dataRoot path="${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}"></dataRoot>
+            <conversionActions>
+                <readAction name="ReadFromCsvAction">
+                    <files type="delimited" separator="|"/>
+                </readAction>
+                <conversionAction name="BasicConversionAction"></conversionAction>
+                <writeAction name="WriteToParquetAction">
+                    <hive>
+                        <database name="raw_it"></database>
+                        <tableName name="zero_euro_threshold_crossing"></tableName>
+                    </hive>
+                </writeAction>
+            </conversionActions>
+            <schema>
+                <field name="TAG" type="string" required="false"/>
+                <field name="MSISDN" type="string" required="false"/>
+                <field name="GENERATION_TIMESTAMP" type="string" required="false"/>
+                <field name="BALANCE" type="string" required="false"/>
+            </schema>
+            <partitions>
+                <partition name="year" fieldType="integer" position="0:0" source="filepath:year" />
+                <partition name="month" fieldType="integer" position="0:0" source="filepath:month" />
+                <partition name="day" fieldType="integer" position="0:0" source="filepath:day" />
+                <partition name="hour" fieldType="integer" position="0:0" source="filepath:hour" />
+            </partitions>
+            <fieldActions>
+                <fieldAction fieldName="MSISDN" actionType="function" actionParameter="anonymise" actionMethod="bdpmanonitmsisdn"/>
+            </fieldActions>
+        </dataConversion>
+ </dataConversions>
+</configuration>
+

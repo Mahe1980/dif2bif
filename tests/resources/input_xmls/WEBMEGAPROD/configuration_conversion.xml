@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="hdfsRootPath" value="/data/raw"/>
+            <property name="localRootPath" value="/var/SP/data/staging"/>
+        </properties>
+    </generalConfiguration>
+    <dataConversions>
+                 <dataConversion configurationId="454bd408-99e2-4566-b1ec-d618a440b7a7" description="ES WEBMEGAPROD">
+            <properties>
+                <property name="country" value="es"></property>
+                <property name="datasource" value="cvm"></property>
+                <property name="interface" value="WEBMEGAPROD"></property>
+                <property name="version" value="1.0"></property>
+                <property name="contains_header" value="true"></property>
+                <property name="DeleteInputDataAfterSuccessfulConversion" value="false"></property>
+                <property name="ignore_trailing_columns" value="true"></property>
+            </properties>
+            <inputFileSelectionCriteria>
+                <criteria name="MinimumNumberOfFiles" value="1"></criteria>
+            </inputFileSelectionCriteria>
+            <dataRoot path="${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}"></dataRoot>
+            <conversionActions>
+                <readAction name="ReadFromCsvAction">
+                    <files type="delimited" separator="|"/>
+                </readAction>
+                <conversionAction name="BasicConversionAction"></conversionAction>
+                <writeAction name="WriteToParquetAction">
+                    <hive>
+                        <database name="raw_es"></database>
+                        <tableName name="${datasource}_${interface}"></tableName>
+                    </hive>
+                </writeAction>
+            </conversionActions>
+            <schema>
+				<field name="COD_MEGAPRODUCTO" type="string" required="true"/>
+                <field name="RGU" type="string" required="true"/>
+                <field name="DESCRIPCION" type="string" required="true"/>
+                <field name="CLASE" type="string" required="true"/>
+                <field name="USUARIO_ULT_MOD" type="string" required="false"/>
+                <field name="FECHA_ULT_MODIFICACION" type="timestamp" required="false" format="yyyyMMdd"/>
+            </schema>
+            <partitions>
+                <partition name="year" fieldType="integer" position="29:33" source="filename:year"></partition>
+                <partition name="month" fieldType="integer" position="27:29" source="filename:month"></partition>
+                <partition name="day" fieldType="integer" position="25:27" source="filename:day"></partition>
+			</partitions>
+        </dataConversion>
+	 </dataConversions>
+</configuration>

@@ -1,0 +1,80 @@
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="hdfsRootPath" value="target/filesystem/hdfs" />
+        </properties>
+    </generalConfiguration>
+    <dataConversions>
+        <dataConversion configurationId="17aff22b-4a86-4abb-99f1-9c3dbbdb446c" description="Conversion of Interaction table ">
+            <properties>
+                <property name="country" value="de" />
+                <property name="datasource" value="customer_interaction"/>
+                <property name="interface" value="interaction_content" />
+                <property name="version" value="1.0" />
+                <property name="contains_header" value="true" />
+                <property name="DeleteInputDataAfterSuccessfulConversion" value="false" />
+            </properties>
+            <inputFileSelectionCriteria>
+                <criteria name="MinimumNumberOfFiles" value="1" />
+            </inputFileSelectionCriteria>
+            <dataRoot path="${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}" />
+            <conversionActions>
+                <readAction name="ReadFromCsvAction">
+                    <files type="delimited" separator="|"/>
+                </readAction>
+                <conversionAction name="BasicConversionAction"/>
+                <writeAction name="WriteToParquetAction">
+                    <hive>
+                        <database name="raw_de" />
+                        <tableName name="customer_interaction_interaction_content" />
+                    </hive>
+                </writeAction>
+            </conversionActions>
+            <schema>
+                <field name="ID" type="string" format="" required="true" />
+                <field name="START_TIME" type="string" format="yyyyMMddHHmmss" required="true" />
+                <field name="SEQUENCE_ID" type="integer" format="" required="true" />
+                <field name="CONTENT_END" type="integer" format="" required="false" />
+                <field name="CONTENT_ORIGINATOR" type="string" format="" required="false" />
+                <field name="CONTENT_RESULT" type="integer" format="" required="false" />
+                <field name="STARTDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+                <field name="ENDDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+                <field name="TIMESHIFT" type="integer" format="" required="false" />
+                <field name="PARENTID" type="string" format="" required="false" />
+                <field name="THREADID" type="string" format="" required="false" />
+                <field name="STATUS" type="integer" format="" required="false" />
+                <field name="ENTITYTYPEID" type="integer" format="" required="false" />
+                <field name="MEDIATYPEID" type="string" format="" required="false" />
+                <field name="TYPEID" type="string" format="" required="false" />
+                <field name="SUBTYPEID" type="string" format="" required="false" />
+                <field name="EXTERNALID" type="string" format="" required="false" />
+                <field name="OWNERID" type="integer" format="" required="false" />
+                <field name="CONTACTID" type="string" format="" required="false" />
+                <field name="WAIT_DURATION" type="integer" format="" required="false" />
+                <field name="CONTENT_DURATION" type="integer" format="" required="false" />
+                <field name="CATEGORYID" type="string" format="" required="false" />
+                <field name="CREATORAPPID" type="integer" format="" required="false" />
+                <field name="SUBJECT" type="string" format="" required="false" />
+                <field name="TEXT" type="string" format="" required="false" />
+                <field name="CREATED_TIME" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+                <field name="UPDATED_TIME" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+                <field name="UPDATE_NEEDED" type="integer" format="" required="false" />
+                <field name="INTERACTION_UPDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+                <field name="SEGMENT_UPDATE" type="timestamp" format="yyyy-MM-dd HH:mm:ss" required="false" />
+            </schema>
+            <fieldActions>
+                <fieldAction fieldName="ID" actionType="function" actionParameter="cleanFieldIf" actionMethod="hasNoAlphanumericCharacters" />
+                <fieldAction fieldName="ID" actionMethod="bdpranondeid" actionParameter="anonymise" actionType="function"/>
+                <fieldAction fieldName="START_TIME" actionMethod="bdpranondedatetime" actionParameter="anonymise" actionType="function"/>
+                                                          <fieldAction fieldName="CONTACTID" actionMethod="bdpranondeid" actionParameter="anonymise" actionType="function"/>
+                <fieldAction fieldName="SUBJECT" actionMethod="email,phone" actionParameter="replace" actionType="function"/>
+                <fieldAction fieldName="TEXT" actionMethod="email,phone" actionParameter="replace" actionType="function"/>
+            </fieldActions>
+            <partitions>
+                <partition name="year" fieldType="integer" source="column:CREATED_TIME" position="0:4" />
+                <partition name="month" fieldType="integer" source="column:CREATED_TIME" position="5:7" />
+                <partition name="day" fieldType="integer" source="column:CREATED_TIME" position="8:10" />
+            </partitions>
+        </dataConversion>
+    </dataConversions>
+</configuration>

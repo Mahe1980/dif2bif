@@ -1,0 +1,6 @@
+# Configure project id and table name to relative config file path as shown below
+# Please note the input to script is base path and make sure base path and relative path form a full path
+project_id: vf-it-ca-nonlive
+table_to_relative_config_path: [{'CKM_D_SIM_BDP_F_D': "target/test_output/bss/CKM_D_SIM_BDP_F_D"},
+                                {'DM_CAMPAIGN_BDP_D_D': "target/test_output/ckm/DM_CAMPAIGN_BDP_D_D"},
+                               ]

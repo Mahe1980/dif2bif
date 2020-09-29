@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration verbose="false" debugMode="false">
+    <generalConfiguration>
+        <properties>
+            <property name="hdfsRootPath" value="/data/raw"/>
+            <property name="localRootPath" value="/var/SP/data/staging"/>
+        </properties>
+    </generalConfiguration>
+    <dataConversions>
+        <dataConversion configurationId="cba8204c-0385-4c82-a748-f85b6f7adb56" description="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M Conversion" name="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M">
+            <properties>
+                <property name="country" value="es"></property>
+                <property name="datasource" value="cvm"></property>
+                <property name="interface" value="ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M"></property>
+                <property name="version" value="1.1"></property>
+                <property name="contains_header" value="false"></property>
+                <property name="DeleteInputDataAfterSuccessfulConversion" value="false"></property>
+            </properties>
+            <inputFileSelectionCriteria>
+                <criteria name="MinimumNumberOfFiles" value="1"></criteria>
+            </inputFileSelectionCriteria>
+            <dataRoot path="${hdfsRootPath}/vf_${country}/${datasource}/${interface}/${version}"></dataRoot>
+            <conversionActions>
+                <readAction name="ReadFromCsvAction">
+                    <files type="delimited" separator="\t"/>
+                </readAction>
+                <conversionAction name="BasicConversionAction"></conversionAction>
+                <writeAction name="WriteToParquetAction">
+                    <hive>
+                        <database name="raw_es"></database>
+                        <tableName name="cvm_ES_CVM_IN_EXTR_DTOS_RIESG_FINPR_M_DATALAB_M"></tableName>
+                    </hive>
+                </writeAction>
+            </conversionActions>
+            <schema>
+                <field name="MSISDN" type="string" required="false"/>
+                <field name="NIF" type="string" required="false"/>
+                <field name="NUMERO_CUENTA" type="string" required="false"/>
+                <field name="ESTADO_SERVICIO" type="string" required="false"/>
+                <field name="CODIGO_DESCUENTO" type="string" required="false"/>
+                <field name="DESCRIPCION_DESCUENTO" type="string" required="false"/>
+                <field name="ESTADO_DESCUENTO" type="string" required="false"/>
+                <field name="FX_ACTIVACION_DTO" type="timestamp" required="false" format="yyyyMMdd"/>
+                <field name="FX_DESACTIVACION_DTO" type="timestamp" required="false" format="yyyyMMdd"/>
+            </schema>
+            <partitions>
+                <partition name="year" fieldType="integer" position="0:0" source="filepath:year"></partition>
+                <partition name="month" fieldType="integer" position="0:0" source="filepath:month"></partition>
+                <partition name="day" fieldType="integer" position="last" source="datetime"></partition>
+            </partitions>
+        </dataConversion>
+	</dataConversions>
+</configuration>
+

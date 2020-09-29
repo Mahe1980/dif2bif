@@ -1,0 +1,60 @@
+<configuration verbose="false" debugMode="false">
+  <generalConfiguration>
+    <properties>
+      <property name="rootPath" value="gs://vfit-dh-rawingested"/>
+      <property name="gcsOutputRootPath" value="gs://vfit-dh-meg-rawprepared"/>
+    </properties>
+  </generalConfiguration>
+  <dataConversions>
+    <dataConversion configurationId="3fc8e5b7-be0c-489e-a62c-e3dcf601673b" description="ZERO_EURO_THRESHOLD_CROSSING">
+      <properties>
+        <property name="country" value="it"/>
+        <property name="datasource" value="meg"/>
+        <property name="interface" value="ZERO_EURO_THRESHOLD_CROSSING"/>
+        <property name="version" value="1.0"/>
+        <property name="DeleteInputDataAfterSuccessfulConversion" value="false"/>
+        <property name="bigQueryProject" value="dh"/>
+        <property name="bigQueryDataCategory" value="meg"/>
+      </properties>
+      <inputFileSelectionCriteria>
+        <criteria name="MinimumNumberOfFiles" value="1"/>
+      </inputFileSelectionCriteria>
+      <dataRoot path="${rootPath}/${datasource}/${interface}/${version}"/>
+      <conversionActions>
+        <readAction name="ReadFromCsvAction">
+          <files type="delimited" separator="|" contains_header="true" charset="utf-8"/>
+        </readAction>
+        <conversionAction name="BasicConversionAction"/>
+        <writeActions>
+          <writeAction name="WriteToBigQueryAction">
+            <config>
+              <dataset name="vf${country}_${bigQueryProject}_lake_${bigQueryDataCategory}_rawprepared_s"/>
+              <tableName name="zero_euro_threshold_crossing"/>
+            </config>
+          </writeAction>
+          <writeAction name="WriteToParquetAction">
+            <config>
+              <path>${gcsOutputRootPath}/${interface}/${version}/parquet</path>
+            </config>
+          </writeAction>
+        </writeActions>
+      </conversionActions>
+      <schema>
+        <field name="TAG" type="string" required="false"/>
+        <field name="MSISDN" type="string" required="false"/>
+        <field name="GENERATION_TIMESTAMP" type="string" required="false"/>
+        <field name="BALANCE" type="string" required="false"/>
+      </schema>
+      <partitions>
+        <partition name="fileRegex" source="property" position="(IT_BAL_MEG_H_ZERO_THRESH_CROSS)_(\d{4})(\d{2})(\d{2})(\d{2})(.*).csv.gz"/>
+        <partition name="2" source="property" position="year"/>
+        <partition name="3" source="property" position="month"/>
+        <partition name="4" source="property" position="day"/>
+        <partition name="5" source="property" position="hour"/>
+      </partitions>
+      <fieldActions>
+        <fieldAction fieldName="MSISDN" actionType="function" actionParameter="anonymise" actionMethod="bdpmanon${anon_version}msisdn"/>
+      </fieldActions>
+    </dataConversion>
+  </dataConversions>
+</configuration>
